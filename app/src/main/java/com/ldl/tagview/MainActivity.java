@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.ldl.tagview.tag1.ImageBrowseActivity;
 import com.ldl.tagview.tag2.TagListActivity;
+import com.ldl.tagview.tag3.TagActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,TagListActivity.class));
+            }
+        });
+        findViewById(R.id.btn_three).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,TagActivity.class));
             }
         });
     }

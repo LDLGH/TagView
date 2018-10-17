@@ -1,4 +1,4 @@
-package com.picturetagview;
+package com.ldl.tagview.tag3;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+
+import com.ldl.tagview.R;
 
 public class PictureTagView extends RelativeLayout implements OnEditorActionListener{
 

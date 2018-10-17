@@ -24,6 +24,7 @@
 
         <activity android:name=".tag2.TagListActivity"></activity>
         <activity android:name=".tag1.ImageBrowseActivity"></activity>
+        <activity android:name=".tag3.TagActivity"></activity>
     </application>
 
 </manifest>

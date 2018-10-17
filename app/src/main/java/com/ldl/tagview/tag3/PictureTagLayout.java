@@ -1,7 +1,4 @@
-package com.picturetagview;
-
-import com.picturetagview.PictureTagView.Direction;
-import com.picturetagview.PictureTagView.Status;
+package com.ldl.tagview.tag3;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.RelativeLayout;
+
 @SuppressLint("NewApi")
 public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 	private static final int CLICKRANGE = 5;
@@ -35,7 +33,7 @@ public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 		case MotionEvent.ACTION_DOWN:
 			touchView = null;
 			if(clickView!=null){
-				((PictureTagView)clickView).setStatus(Status.Normal);
+				((PictureTagView)clickView).setStatus(PictureTagView.Status.Normal);
 				clickView = null;
 			}
 			startX = (int) event.getX();
@@ -44,7 +42,7 @@ public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 				startTouchViewLeft = touchView.getLeft();
 				startTouchViewTop = touchView.getTop();
 			}
-			else{				
+			else{
 				addItem(startX,startY);
 			}
 			break;
@@ -58,7 +56,7 @@ public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 			//如果挪动的范围很小，则判定为单击
 			if(touchView!=null&&Math.abs(endX - startX)<CLICKRANGE&&Math.abs(endY - startY)<CLICKRANGE){
 				//当前点击的view进入编辑状态
-				((PictureTagView)touchView).setStatus(Status.Edit);
+				((PictureTagView)touchView).setStatus(PictureTagView.Status.Edit);
 				clickView = touchView;
 			}
 			touchView = null;
@@ -70,14 +68,14 @@ public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 	
 	private void addItem(int x,int y){
 		View view = null;
-		RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 		if(x>getWidth()*0.5){
 			params.leftMargin = x - PictureTagView.getViewWidth();
-			view = new PictureTagView(getContext(),Direction.Right);
+			view = new PictureTagView(getContext(),PictureTagView.Direction.Right);
 		}
 		else{
 			params.leftMargin = x;
-			view = new PictureTagView(getContext(),Direction.Left);
+			view = new PictureTagView(getContext(),PictureTagView.Direction.Left);
 		}
 		
 		params.topMargin = y;
@@ -90,7 +88,7 @@ public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 	}
 	private void moveView(int x,int y){
 		if(touchView == null) return;
-		RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 		params.leftMargin = x - startX + startTouchViewLeft;
 		params.topMargin = y - startY + startTouchViewTop;
 		//限制子控件移动必须在视图范围内
