@@ -67,23 +67,25 @@ public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 
 	
 	private void addItem(int x,int y){
-		View view = null;
+		PictureTagView view = null;
 		LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
 		if(x>getWidth()*0.5){
-			params.leftMargin = x - PictureTagView.getViewWidth();
 			view = new PictureTagView(getContext(),PictureTagView.Direction.Right);
+			view.setText("1111111111左边");
+			params.leftMargin = x - getViewWidth(view);
 		}
 		else{
-			params.leftMargin = x;
 			view = new PictureTagView(getContext(),PictureTagView.Direction.Left);
+			params.leftMargin = x;
 		}
 		
-		params.topMargin = y;
+		params.topMargin = y - getViewHeight(view);
 		//上下位置在视图内
-		if(params.topMargin<0)params.topMargin =0;
-		else if((params.topMargin+PictureTagView.getViewHeight())>getHeight())params.topMargin = getHeight() - PictureTagView.getViewHeight();
-
-		
+		if(params.topMargin<0){
+            params.topMargin =0;
+        } else if((params.topMargin + getViewHeight(view))>getHeight()){
+            params.topMargin = getHeight();
+        }
 		this.addView(view, params);
 	}
 	private void moveView(int x,int y){
@@ -116,4 +118,23 @@ public class PictureTagLayout extends RelativeLayout implements OnTouchListener{
 		touchView = null;
 		return false;
 	}
+
+	/**
+	 * 获取view宽度
+	 * */
+	private int getViewWidth(View view){
+		view.measure( 0,  0);
+		int measuredWidth = view.getMeasuredWidth();
+		return measuredWidth;
+	}
+
+	/**
+	 * 获取view高度
+	 * */
+	private int getViewHeight(View view){
+		view.measure( 0,  0);
+		int measuredHeight = view.getMeasuredHeight();
+		return measuredHeight;
+	}
+
 }

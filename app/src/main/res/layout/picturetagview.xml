@@ -9,18 +9,18 @@
         android:id="@+id/loTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_picturetagview_tagview_left" >
+        android:background="@drawable/shape_text"
+         >
 
         <TextView
             android:id="@+id/tvPictureTagLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:padding="5dp"
             android:gravity="center_vertical"
             android:hint="标签"
             android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
             android:textSize="12dp" />
 
         <EditText

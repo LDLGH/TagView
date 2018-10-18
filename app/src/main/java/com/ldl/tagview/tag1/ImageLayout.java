@@ -112,7 +112,7 @@ public class ImageLayout extends FrameLayout implements View.OnClickListener {
             LinearLayout view = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.layout_img_point, this, false);
             ImageView imgPoint = view.findViewById(R.id.imgPoint);
             TextView tv_tag_left = view.findViewById(R.id.tv_tag_left);
-            final TextView tv_tag_right = view.findViewById(R.id.tv_tag_right);
+            TextView tv_tag_right = view.findViewById(R.id.tv_tag_right);
             imgPoint.setTag(i);
             tv_tag_left.setTag(i);
             tv_tag_right.setTag(i);

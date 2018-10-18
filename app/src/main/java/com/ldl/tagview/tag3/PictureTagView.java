@@ -23,7 +23,7 @@ public class PictureTagView extends RelativeLayout implements OnEditorActionList
 	public enum Direction{Left,Right}
 	private Direction direction = Direction.Left;
 	private InputMethodManager imm;
-	private static final int ViewWidth = 80;
+	private static final int ViewWidth = 220;
 	private static final int ViewHeight = 50;
 	
 	public PictureTagView(Context context,Direction direction) {
@@ -33,6 +33,7 @@ public class PictureTagView extends RelativeLayout implements OnEditorActionList
 		initViews();
 		init();
 		initEvents();
+		directionChange();
 	}
 
 	/** 初始化视图 **/
@@ -80,31 +81,32 @@ public class PictureTagView extends RelativeLayout implements OnEditorActionList
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		super.onLayout(changed, l, t, r, b);
-		View parent = (View) getParent();
-		int halfParentW = (int) (parent.getWidth()*0.5);
-		int center = (int) (l + (this.getWidth()*0.5));
-		if(center<=halfParentW){
-			direction = Direction.Left;
-		}
-		else{
-			direction = Direction.Right;
-		}
-		directionChange();
+//		View parent = (View) getParent();
+//		int halfParentW = (int) (parent.getWidth()*0.5);
+//		int center = (int) (l + (this.getWidth()*0.5));
+//		if(center<=halfParentW){
+//			direction = Direction.Left;
+//		}
+//		else{
+//			direction = Direction.Right;
+//		}
+//		directionChange();
 	}
 	private void directionChange(){
 		switch(direction){
 		case Left:
-			loTag.setBackgroundResource(R.drawable.bg_picturetagview_tagview_left);
+			tvPictureTagLabel.setText("我是右边文字");
+//			loTag.setBackgroundResource(R.drawable.bg_picturetagview_tagview_left);
 			break;
 		case Right:
-			loTag.setBackgroundResource(R.drawable.bg_picturetagview_tagview_right);
+			tvPictureTagLabel.setText("我是左边文字");
+//			loTag.setBackgroundResource(R.drawable.bg_picturetagview_tagview_right);
 			break;
 		}
 	}
-	public static int getViewWidth(){
-		return ViewWidth;
+
+	public void setText(String text){
+		tvPictureTagLabel.setText(text);
 	}
-	public static int getViewHeight(){
-		return ViewHeight;
-	}
+
 }
